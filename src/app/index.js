@@ -47,12 +47,18 @@ class App extends React.Component {
           <main className="app-main-content-wrapper">
             <div className="app-main-content">
               <Switch>
-                  <Route path={`${match.url}/sample-page`}
-                         component={asyncComponent(() => import('./routes/SamplePage'))}/>
-                  <Route path={`${match.url}/prueba`}
-                         component={asyncComponent(() => import('./routes/KambbanSupport'))}/>
-                   <Route path={`${match.url}/crudUsers`}
-                         component={asyncComponent(() => import('./routes/KambbanSupport/crudUsers'))}/>       
+                  <Route path={`${match.url}/users-administration`}
+                         component={asyncComponent(() => import('./routes/UsersAdministration'))}/>
+                  <Route path={`${match.url}/statistics`}
+                         component={asyncComponent(() => import('./routes/Statistics/statistics'))}/>
+                  <Route path = {`${match.url}/new-pqr`}
+                         component = {asyncComponent(() => import('./routes/Support/newPQR'))}/>
+                  <Route path = {`${match.url}/support-list`}
+                         component = {asyncComponent(() => import('./routes/Support/supportList'))}/>
+                  <Route path = {`${match.url}/user-manual`}
+                         component = {asyncComponent(() => import('./routes/Documentation/userManual'))}/>
+                  <Route path = {`${match.url}/videos`}
+                         component = {asyncComponent(() => import('./routes/Documentation/videos'))}/>
               </Switch>
             </div>
           </main>

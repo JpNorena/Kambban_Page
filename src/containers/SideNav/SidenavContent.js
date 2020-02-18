@@ -114,9 +114,15 @@ class SidenavContent extends Component {
           <li className="nav-header">
             <IntlMessages id="sidebar.main"/>
           </li>
+          <li className = "menu no-arrow">
+            <NavLink to = "/app/statistics">
+              <i className = "zmdi zmdi-trending-up zmdi-hc-fw"></i>
+              <span className = "nav-text"><IntlMessages id = "pages.statistics"/> </span>
+            </NavLink>
+          </li>
           <li className="menu no-arrow">
-            <NavLink to="/app/sample-page">
-              <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
+            <NavLink to="/app/users-administration">
+              <i className="zmdi zmdi-view-list zmdi-hc-fw"/>
               <span className="nav-text"><IntlMessages id="pages.samplePage"/> </span>
             </NavLink>
           </li>
@@ -126,20 +132,48 @@ class SidenavContent extends Component {
             type = "button">
               <span className = "MuiButton-label nav-text">
                   <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" ></i>
-                    Prueba
+                    <IntlMessages id = "sidebar.support"/>
                 </span>
               <span className = "MuiTouchRipple-root"/>
             </button>
             <ul className = "sub-menu">
               <li>
-                <NavLink to="/app/prueba">
-                  <span className="nav-text">Prueba 1</span>
+                <NavLink to="/app/new-pqr">
+                  <span className="nav-text">
+                    <IntlMessages id = "pages.newPQR"/>
+                  </span>
                 </NavLink>
               </li>
               <li>
-                <NavLink to = '/app/crudUsers'>
+                <NavLink to = '/app/support-list'>
                   <span className = "nav-text">
-                    Prueba 2
+                    <IntlMessages id = "pages.supportList"/>
+                  </span>
+                </NavLink>
+              </li>
+            </ul>
+          </li>
+          <li className = "menu collapsed-box closed">
+            <button className = "MuiButtonBase-root MuiButton-root MuiButton-text"
+            tabIndex = "0"
+            type = "button">
+              <span className = "MuiButton-label nav-text">
+                <i className = "zmdi zmdi-view-web zdmi-hc-fw" />
+                <IntlMessages id = "sidebar.documentation"/> 
+              </span>
+            </button>
+            <ul className = "sub-menu">
+              <li>
+                <NavLink to="/app/user-manual">
+                  <span className = "nav-text">
+                    <IntlMessages id = "pages.userManual" />
+                  </span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/app/videos">
+                  <span className = "nav-text">
+                    <IntlMessages id = "pages.videos" />
                   </span>
                 </NavLink>
               </li>
