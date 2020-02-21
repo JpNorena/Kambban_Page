@@ -19,7 +19,6 @@ function MyTextField() {
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <TextField id="outlined-basic" label={<IntlMessages id="appModule.name" />} />
-      <TextField id="outlined-basic" label={<IntlMessages id="appModule.name" />} />
       <TextField id="outlined-basic" label={<IntlMessages id="appModule.username" />} />
       <TextField id="outlined-basic" label={<IntlMessages id="sidebar.appModule.mail" />} />
       <TextField id="outlined-basic" label={<IntlMessages id="appModule.password" />} />

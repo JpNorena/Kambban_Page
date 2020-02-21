@@ -1,4 +1,5 @@
 { 
+  "isLoading": "Loading",
   "user.list": "User list",
   "button.add": "Create",
   "company.name": "Company Name",
