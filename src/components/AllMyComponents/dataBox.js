@@ -1,6 +1,8 @@
 import MUIDataTable from "mui-datatables";
 import React, { Component } from "react";
 import IntlMessages from "util/IntlMessages";
+import { URL } from 'constants/ActionTypes'
+import Loader from 'react-loader-spinner'
 
 const columns = [
   {
@@ -46,7 +48,12 @@ const columns = [
 ];
 
 const options = {
-  filterType: "checkbox"
+  filterType: "checkbox",
+  sort: false,
+  search: false,
+  print: false,
+  download: false,
+  selectableRows: "none"
 };
 
 export default class DataBox extends Component {
@@ -59,7 +66,7 @@ export default class DataBox extends Component {
   }
 
   componentDidMount() {
-    fetch("http://127.0.0.1:8080/api/users")
+    fetch(`${URL}/users`)
       .then(res => res.json())
       .then(({
         data
@@ -67,7 +74,7 @@ export default class DataBox extends Component {
     
         this.setState({
           isLoaded: true,
-          users:data.data
+          users:data.records
         });
       });
   }
@@ -76,9 +83,8 @@ export default class DataBox extends Component {
     let { isLoaded, users } = this.state;
     if (!isLoaded) {
       return (
-        <div>
-          <IntlMessages id="isLoading" />
-          {console.log(isLoaded.state)}
+        <div className = "page-heading">
+          <Loader type="Audio" color="#3f51b5" height={80} width={80} />
         </div>
       );
     } else {
