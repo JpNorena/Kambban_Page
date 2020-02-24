@@ -17,7 +17,9 @@ export class UsersAdministration extends Component {
               <MyTextField />
               <CrudButton />
             </div> 
-            <DataBox/>  
+            <div>
+              <DataBox/>
+            </div>  
         </div>            
     )
 }

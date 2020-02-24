@@ -59,6 +59,8 @@ class App extends React.Component {
                          component = {asyncComponent(() => import('./routes/Documentation/userManual'))}/>
                   <Route path = {`${match.url}/videos`}
                          component = {asyncComponent(() => import('./routes/Documentation/videos'))}/>
+                  <Route path ={`${match.url}/newCompany`}
+                         component = {asyncComponent(() => import('./routes/UsersAdministration/newCompany'))}/>
               </Switch>
             </div>
           </main>

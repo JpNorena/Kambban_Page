@@ -153,6 +153,14 @@ class SidenavContent extends Component {
               </li>
             </ul>
           </li>
+          <li>
+            <NavLink to="/app/newCompany">
+            <i class="zmdi zmdi-surround-sound" />
+              <span className = "nav-text">
+                <IntlMessages id = "new.company"/>
+              </span>
+            </NavLink>
+          </li>
           <li className = "menu collapsed-box closed">
             <button className = "MuiButtonBase-root MuiButton-root MuiButton-text"
             tabIndex = "0"
