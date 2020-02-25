@@ -30,7 +30,7 @@ const columns = [
     }
   },
   {
-    name: "company_id",
+    name: "company.name",
     label: <IntlMessages id="company.name" />,
     options: {
       filter: true,
@@ -38,7 +38,7 @@ const columns = [
     }
   },
   {
-    name: "user_type_id",
+    name: "user_type.name",
     label: <IntlMessages id="company.userType" />,
     options: {
       filter: true,
