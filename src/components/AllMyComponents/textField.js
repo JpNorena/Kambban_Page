@@ -1,39 +1,85 @@
-import React, { useState } from 'react';
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
+import React, { useEffect ,useState, Fragment } from 'react';
+import AddUserForm from './addUserForm';
+import EditUserForm from './editUserForm';
+import UserTable from './userTable';
 import IntlMessages from "util/IntlMessages";
+import ApiService from 'app/services/ApiServices';
+import { URL } from 'constants/ActionTypes';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width:480,
-      marginBottom: 10
+const MyTextField = () => {
+  // Data
+	const initialFormState = { id: null, name: '', username: '', email: '', password: '', user_type: '', company: '' }
+
+	const [ users, setUsers ] = useState([])
+	const [ currentUser, setCurrentUser ] = useState(initialFormState)
+	const [ editing, setEditing ] = useState(false)
+
+  const  settingUsers = async () =>{
+    try {
+      const api = new ApiService();
+      const response = await api.fetchGet(`${URL}/users`,{})
+      setUsers(response)
+
+    } catch (err) {
+      console.log(err);
     }
   }
-}));
 
-function MyTextField() {
-  const classes = useStyles();
-  const [name, postName] = useState();
-  const [username, postUserName] = useState();
-  const [email, postEmail] = useState();
-  const [password, postPassword] = useState();
-  const [company_id, postCompanyId] = useState();
-  const [user_type_id, postuserTypeId ] = useState();
+  useEffect(() => {
+    settingUsers();
+  }, [])
 
+	// CRUD operations
+	const addUser = user => {
+		setUsers([ ...users, user ])
+	}
 
-  return (
-    <form className={classes.root} noValidate autoComplete="off">
-      <TextField id="outlined-basic" label={<IntlMessages id="appModule.name" name="name" />} > </TextField>
-      <TextField id="outlined-basic" label={<IntlMessages id="appModule.username" name="username"/>} > </TextField>
-      <TextField id="outlined-basic" label={<IntlMessages id="sidebar.appModule.mail" name="email"/>} > </TextField>
-      <TextField id="outlined-basic" label={<IntlMessages id="appModule.password" name="password"/>}> </TextField>
-      <TextField id="outlined-basic" label={<IntlMessages id="company.name" name="company_id"/>} > </TextField>
-      <TextField id="outlined-basic" label={<IntlMessages id="company.userType" name="user_type_id"/>} > </TextField>
-    </form>
-    
-  );
+	const deleteUser = id => {
+		setEditing(false)
+
+		setUsers(users.filter(user => user.id !== id))
+	}
+
+	const updateUser = (id, updatedUser) => {
+		setEditing(false)
+
+		setUsers(users.map(user => (user.id === id ? updatedUser : user)))
+	}
+
+	const editRow = user => {
+		setEditing(true)
+
+		setCurrentUser({ id: user.id, name: user.name, username: user.username })
+	}
+
+	return (
+		<div className="container">
+			<div className="flex-row">
+				<div className="flex-large">
+					{editing ? (
+						<Fragment>
+							<h2><IntlMessages id="edit.user" /></h2>
+							<EditUserForm
+								editing={editing}
+								setEditing={setEditing}
+								currentUser={currentUser}
+								updateUser={updateUser}
+							/>
+						</Fragment>
+					) : (
+						<Fragment>
+							<h2><IntlMessages id="user.info" /></h2>
+							<AddUserForm addUser={addUser} />
+						</Fragment>
+					)}
+				</div>
+				<div className="flex-large">
+					<h2><IntlMessages id="mod.users" /></h2>
+					<UserTable users={users} editRow={editRow} deleteUser={deleteUser} />
+				</div>
+			</div>
+		</div>
+	)
 }
 
-export default MyTextField;
+export default MyTextField

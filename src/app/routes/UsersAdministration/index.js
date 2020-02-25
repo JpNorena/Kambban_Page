@@ -3,7 +3,6 @@ import ContainerHeader from 'components/ContainerHeader'
 import IntlMessages from 'util/IntlMessages'
 import MyTextField from "../../../components/AllMyComponents/textField"
 import DataBox from "../../../components/AllMyComponents/dataBox"
-import CrudButton from "../../../components/AllMyComponents/buttons"
 
 export class UsersAdministration extends Component {
   render() {
@@ -15,7 +14,6 @@ export class UsersAdministration extends Component {
             />
             <div className = "page-heading">
               <MyTextField />
-              <CrudButton />
             </div> 
             <div>
               <DataBox/>
