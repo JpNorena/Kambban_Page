@@ -1,4 +1,11 @@
 { 
+  "add.new.user":"Add New User",
+  "form.cancel":"Cancel",
+  "user.update": "Update User",
+  "button.edit": "Edit",
+  "edit.user": "Editing User",
+  "user.info": "User Information",
+  "mod.users": "Modifiable Users",
   "isLoading": "Loading",
   "user.list": "User list",
   "button.add": "Create",
