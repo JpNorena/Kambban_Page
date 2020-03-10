@@ -11,13 +11,15 @@ import {
   showAuthLoader,
   userSignIn
 } from 'actions/Auth';
+import ApiService from 'app/services/ApiServices'
+import {URL} from 'constants/ActionTypes'
 
 class SignIn extends React.Component {
   constructor() {
     super();
     this.state = {
-      email: 'demo@example.com',
-      password: 'demo#123'
+      email: '',
+      password: '',
     }
   }
 
@@ -33,10 +35,9 @@ class SignIn extends React.Component {
   }
 
   render() {
-    const {
-      email,
-      password
-    } = this.state;
+    const { email, password } = this.state
+    const api = new ApiService()
+    const data = () => {api.fetchPost(`${URL}/auth/login`, this.state)}
     const {showMessage, loader, alertMessage} = this.props;
     return (
       <div
@@ -74,8 +75,7 @@ class SignIn extends React.Component {
 
                   <div className="mb-3 d-flex align-items-center justify-content-between">
                     <Button onClick={() => {
-                      this.props.showAuthLoader();
-                      this.props.userSignIn({email, password});
+                      data()
                     }} variant="contained" color="primary">
                       <IntlMessages id="appModule.signIn"/>
                     </Button>
