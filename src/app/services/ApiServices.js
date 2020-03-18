@@ -1,29 +1,46 @@
-
-
-
 class ApiService{
-     fetchGet = async (url, data) => {
-        try {
-            const response = await fetch(url, data);
-            const jsonData = await response.json();
-            return jsonData
-        } catch(e){
-            console.log("Error", e);
-        }
-     }
+     fetchGet = (url) => {
+        fetch(url, {
+            method: 'GET',
+            headers: '',
+            mode: 'cors',
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(myJson) {
+            console.log(myJson);
+        })
+    }
 
-     fetchPost = async (url, data) => {
-         try {
-            const response = await fetch (url, {
-                method: 'POST',
-                body: JSON.stringify(data),
-               
-            })
-            const jsonData = await response.json() 
-            return jsonData
-         }catch (e){
-            console.log("Error:",  e)
-         }
+
+     fetchPostLogin = (url, data) => {
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{
+              'Content-Type': 'application/json',
+              'X-Requested-With': 'XMLhttpRequest'
+            },
+            mode: 'cors'
+          }).then(res => res.json())
+          .catch(error => console.error('Error:', error))
+          .then(response => console.log('Success:', response));
+     }
+     
+
+     fetchPost = (url, data) => {
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{
+              'Content-Type': 'application/json',
+              'X-Requested-With': 'XMLhttpRequest'
+            },
+            mode: 'cors'
+          }).then(res => res.json())
+          .catch(error => console.error('Error:', error))
+          .then(response => console.log('Success:', response));
      }
 }
 

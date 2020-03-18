@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {Link, /*Redirect*/ } from 'react-router-dom'
 import {connect} from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -20,6 +20,7 @@ class SignIn extends React.Component {
     this.state = {
       email: '',
       password: '',
+      loggedIn: false
     }
   }
 
@@ -34,10 +35,16 @@ class SignIn extends React.Component {
     }
   }
 
+  data = () => {
+    const api = new ApiService()
+    const send = api.fetchPostLogin(`${URL}/auth/login`, this.state)
+    return send
+  }
+
+
+
   render() {
     const { email, password } = this.state
-    const api = new ApiService()
-    const data = () => {api.fetchPost(`${URL}/auth/login`, this.state)}
     const {showMessage, loader, alertMessage} = this.props;
     return (
       <div
@@ -75,7 +82,7 @@ class SignIn extends React.Component {
 
                   <div className="mb-3 d-flex align-items-center justify-content-between">
                     <Button onClick={() => {
-                      data()
+                      this.data()
                     }} variant="contained" color="primary">
                       <IntlMessages id="appModule.signIn"/>
                     </Button>
